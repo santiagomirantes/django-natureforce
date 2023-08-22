@@ -1,0 +1,36 @@
+{%extends 'noSliderParent/noSliderParent.html'%}
+
+{%load static%}
+
+{%block pageTitle%}Registro{%endblock%}
+
+{%block styles%}<link rel="stylesheet" href="{%static 'css/register.css'%}">{%endblock%}
+
+{%block title%}REGISTRO{%endblock%}
+
+{%block content%}
+
+{%if not errors.isPost%}
+<p>El método utilizado no es POST</p>
+{%endif%}
+
+{%if not errors.userIsValid%}
+
+<div id="error">
+    <p>El email ya fue utilizado.</p>
+</div>
+
+{%endif%}
+
+<div id="formContainer">
+
+<form id="form" action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+    <table>
+        {{form.as_table}}
+    </table>
+
+    <input type="submit" value="Registarse">
+</form>
+</div>
+{%endblock%}

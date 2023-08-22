@@ -1,0 +1,179 @@
+/*CTRL + F5 TO RELOAD*/
+
+/*global config*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+/*animations*/
+
+@keyframes changeBackground{
+
+    0%{
+        --titleimage:url(../media/images/landscapes/desert.png);
+    }
+    25%{
+        --titleimage:url(../media/images/landscapes/lake.png);
+    }
+    50%{
+        --titleimage:url(../media/images/landscapes/mountain_in_lake.png);
+    }
+    75%{
+        --titleimage:url(../media/images/landscapes/northern_lights.png);
+    }
+    100%{
+        --titleimage:url(../media/images/landscapes/desert.png);
+    }
+}
+
+html{
+    width:100vw;
+    height:100vh;
+}
+
+/*global vars*/
+
+body{
+
+   --font: 'Rubik', sans-serif;
+   --green:#00ff55;
+   --middlegreen:#009933;
+   --darkgreen:#004d1a;
+   --orange:#ff9900;
+   --titleimage:url(../media/images/landscapes/desert.png);
+   --color:black;
+   --background:white;
+   --errorbg:#a51818;
+   --errorborder:#701010;
+
+   animation:changeBackground 10s infinite;
+   color:var(--color);
+   background: var(--background);
+   width: 100vw;
+   height: 100vh;
+   overflow-x: hidden;
+   
+}
+
+header{
+   width:100vw;
+   height:10vh;
+   background:linear-gradient(to left, var(--middlegreen), var(--darkgreen));
+   user-select: none;
+}
+#header-logo{
+    width:5vw;
+    cursor: pointer;
+}
+#header-logo:hover{
+    -webkit-filter:drop-shadow(0px 0px 5px white);
+            filter:drop-shadow(0px 0px 5px white);
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    width:100vw;
+    height: 10vh;
+}
+#nav-list{
+    display: flex;
+    width:50vw;
+    justify-content: right;
+    list-style: none;
+    height:10vh;
+    align-items: center;
+}
+#nav-list li{
+    --color:var(--orange);
+    width:10vw;
+    font-weight:bold;
+    text-align: center;
+    margin:5px;
+    padding-top:2vh;
+    padding-bottom: 2vh;
+    border-radius: 10%;
+    cursor: pointer;
+    transition: width 0.5s, background-color 0.5s, box-shadow 0.5s, text-shadow 0.5s;
+}
+
+#nav-list li a{
+    text-decoration: none;
+    color:var(--color);
+    transition:color 0.5s;
+}
+
+#nav-list li:hover{
+    --color:white;
+    background:var(--orange);
+    box-shadow:0px 0px 5px var(--orange);
+    text-shadow: 0px 0px 2px white;
+    width:15vw;
+}
+
+#title{
+    width:100vw;
+    height:70vh;
+    background-image:var(--titleimage);
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: brightness(0.5);
+}
+
+#shape{
+    --title-size:7rem;
+    --sub-opacity:1;
+    width:100vw;
+    height:70vh;
+    background-image:var(--titleimage);
+    mask-image: url(../media/images/shapes/rhombus.png);
+    -webkit-mask-image: url(../media/images/shapes/rhombus.png);
+    mask-size: 100vw;
+    -webkit-mask-size:100vw;
+    mask-position: center;
+    -webkit-mask-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter:drop-shadow(0px 0px 100px black);
+    filter: brightness(2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    transition: mask-size 1s, -webkit-mask-size 1s;
+}
+#shape:hover{
+    mask-size:160vw;
+    -webkit-mask-size: 160vw;
+    --title-size:9rem;
+    --sub-opacity:0;
+}
+h1{
+    font-size: var(--title-size);
+    color: var(--middlegreen);
+    transition:font-size 1s;
+    text-transform: uppercase;
+}
+#shape h2{
+    opacity:var(--sub-opacity);
+    transition: opacity 1s;
+    text-transform: uppercase;
+}
+#back{
+    width:5vw;
+    height:5vh;
+    background-image:url(../media/images/symbols/back.png);
+    display: inline-block;
+    background-position: center;
+    background-size: 2.5vw;
+    background-repeat: no-repeat;
+}
+#back:hover{
+    filter: invert(80%) sepia(48%) saturate(6410%) hue-rotate(360deg) brightness(103%) contrast(103%);
+}
+
+
+

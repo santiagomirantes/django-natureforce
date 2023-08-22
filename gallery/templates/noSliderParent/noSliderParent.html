@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NatureForce - {%block pageTitle%}Inicio{%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/noSliderParent.css' %}">
+
+    <!--fonts-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+    {%block styles%}{%endblock%}
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="{% static 'media/images/logo/letter_logo.png' %}" id="header-logo">
+            <ul id="nav-list">
+                <li><a href="{% url 'index'%}">INICIO</a></li>
+                <li><a href="{% url 'gallery'%}">GALERÍA</a></li>
+                <li><a href="{% url 'account'%}">CUENTA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {%block beforeTitle%}{%endblock%}
+    <h1>{%block title%}TÍTULO{%endblock%}</h1>
+
+    {%block content%}{%endblock%}
+
+</body>
+</html>

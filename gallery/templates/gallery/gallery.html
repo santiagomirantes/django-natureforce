@@ -1,0 +1,40 @@
+{% extends "parent/parent.html" %}
+
+{%load static%}
+
+{%block pageTitle%}Galería{%endblock%}
+
+{%block styles%}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{%endblock%}
+
+{%block title%}
+GALERÍA
+{%endblock%}
+
+{%block subtitle%}
+Explora la naturaleza
+{%endblock%}
+
+{%block content%}
+
+<div id="buttonsLayout">
+<button id="addPhoto" class="addButton"><a href="{% url 'addPhoto' %}">Añadir una nueva foto</a></button>
+<button id="addArtist" class="addButton"><a href="{% url 'addArtist' %}">Añadir un nuevo artista</a></button>
+</div>
+
+<form id="searchbar" action="/gallery/search/" method="GET">
+<input type="text" placeholder="Busca algo" id="search" name="search">
+<input type="submit" value="">
+</form>
+
+<div id="pictures">
+    {%for picture in pictures%}
+    <div class="pictureContainer">
+        <h2 class="pictureTitle">{{picture.name}}</h2>
+        <h3 class="pictureArtist">{{picture.artist}}</h3>
+        <img src="{{ picture.file.url }}" class="picture" alt="foto: {{picture.name}}">
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}

@@ -1,0 +1,15 @@
+h1{
+    font-size:3rem;
+    color: var(--middlegreen);
+}
+#error{
+    width:99vw;
+    background-color: var(--errorbg);
+    border:7.5px solid var(--errorborder);
+    color: white;
+    height:10vh;
+}
+#error a{
+    text-decoration: none;
+    color:var(--orange);
+}

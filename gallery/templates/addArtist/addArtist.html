@@ -1,0 +1,31 @@
+{%extends "noSliderParent/noSliderParent.html"%}
+
+{%load static%}
+
+{%block pageTitle%}Añadir Artista{%endblock%}
+
+{%block styles%}<link rel="stylesheet" href="{% static 'css/forms.css' %}">{%endblock%}
+
+{%block beforeTitle%}<a href="{%url 'gallery'%}" id="back" title="Regresar"></a>{%endblock%}
+
+{%block title%}Añadir Artista{%endblock%}
+
+{%block content%}
+
+{%if not errors.validAge%}
+<div id="error">
+<p>Edad invalida</p>
+</div>
+{%endif%}
+
+<form action="" method="POST"> {% csrf_token %}
+
+<table>
+{{form.as_table}}
+</table>
+
+<input type="submit" value="Enviar">
+
+</form>
+
+{%endblock%}

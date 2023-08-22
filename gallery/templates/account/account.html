@@ -1,0 +1,19 @@
+{%extends 'parent/parent.html'%}
+
+{%load static%}
+
+{%block styles%}<link rel="stylesheet" href="{%static 'css/account.css'%}">{%endblock%}
+
+{%block pageTitle%}Cuenta{%endblock%}
+
+{%block title%}Cuenta{%endblock%}
+{%block subtitle%}Configura tu perfil{%endblock%}
+
+{%block content%}
+
+<div id="chooseOption">
+    <button id="register"><a href="{%url 'register'%}">Registrarse</a></button>
+    <h2>O</h2>
+    <button id="login"><a href="{%url 'login'}">Iniciar Sesión</a></button>
+</div>
+{%endblock%}

@@ -1,0 +1,49 @@
+body{
+    background-color: var(--background);
+    color:var(--color);
+    font-family: 'Rubik', sans-serif;
+}
+h1{
+    font-size: 2rem;
+}
+table tbody tr th{
+    width:10vw;
+    font-size: 1.7rem;
+    text-align: left;
+}
+table tbody tr td{
+   width:30vw;
+}
+table tbody tr td input{
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.7rem;
+    margin-top: 1vh;
+}
+table input[type="text"], table input[type="number"], table input[type="email"]{
+    color: var(--color);
+    background-color: var(--background);
+    outline: none;
+    border:2px solid var(--orange);
+    border-radius: 5%;
+}
+table input[type="text"]:focus, table input[type="number"]:focus, table input[type="email"]:focus{
+    box-shadow: 0px 0px 10px var(--orange);
+    transition: box-shadow 0.5s;
+}
+input[type="submit"]{
+    font-size:2rem;
+    width:35vw;
+    border:2px solid var(--orange);
+    background-color: var(--background);
+    color:var(--orange);
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.5s, background-color 0.5s, box-shadow 1s, text-shadow 1s;
+}
+input[type="submit"]:hover{
+    color:white;
+    background-color: var(--orange);
+    box-shadow: 0px 0px 10px var(--orange);
+    text-shadow: 0px 0px 2px white;
+}

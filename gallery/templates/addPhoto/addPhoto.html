@@ -1,0 +1,55 @@
+{%extends 'noSliderParent/noSliderParent.html'%}
+
+{%load static%}
+
+{%block pageTitle%}Añadir Foto{%endblock%}
+
+{%block styles%}<link rel="stylesheet" href="{% static 'css/forms.css' %}">{%endblock%}
+
+{%block beforeTitle%}<a href="{%url 'gallery'%}" id="back" title="Regresar"></a>{%endblock%}
+
+{%block title%}Añadir Foto{%endblock%}
+
+{%block content%}
+
+{% if form.errors %}
+
+<p>Algo salió mal!</p>
+
+{% endif %}
+
+{% if not errors.validArtist%}
+
+<div id="error">
+<p>El artista no está registrado. <a href="{% url 'addArtist'%}">Registralo aquí</a></p>
+</div>
+
+{%endif%}
+
+{% if not errors.validYear%}
+
+<div id="error">
+<p>El año es invalido. Asegurate de que sea entre el 1700 y el 2023.</p>
+</div>
+
+{%endif%}
+
+{% if not errors.validPhoto%}
+
+<div id="error">
+    <p>Ya hay una foto publicada con este nombre.</p>
+</div>
+
+{%endif%}
+
+<form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+ <table>
+    {{ form.as_table }}
+ </table>
+
+ <input type="submit" value="Enviar">
+
+</form>
+
+{%endblock%}
