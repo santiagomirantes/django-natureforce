@@ -5,4 +5,3 @@ from .models import *
 
 admin.site.register(Photo)
 admin.site.register(Artist)
-admin.site.register(User)

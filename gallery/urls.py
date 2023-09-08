@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from gallery import views
 
 urlpatterns = [
@@ -7,7 +7,7 @@ urlpatterns = [
     path("addPhoto",views.addPhoto, name="addPhoto"),
     path("addArtist", views.addArtist, name="addArtist"),
     path("search/",views.searchPicture,name="search"),
-    path("account",views.account,name="account"),
-    path("register",views.register,name="register"),
-    path("login", views.login, name="login")
+    path("singlePhoto/<photoURL>", views.singlePhoto, name="singlePhoto"),
+    path("editPhoto/<photoURL>", views.editPhoto, name="editPhoto"),
+    path("singlePhoto/deletePhoto/<photoURL>", views.deletePhoto, name="deletePhoto")
 ]

@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.template import Template, Context, loader
 from gallery.models import *
 from gallery.forms import *
+from urllib.parse import unquote
+from django.contrib.auth.decorators import login_required
 
 def index(request) :
 
@@ -14,10 +16,18 @@ def index(request) :
 
     return render(request, "index/index.html", dict)
 
+@login_required
 def gallery(request) :
     pictures = Photo.objects.all()
+
+    #making a valid string to put the file path in the url (because it can´t include /)
+    for picture in pictures:
+      url = picture.file.url
+      linkUrl = url.replace("/","%line%")
+      picture.linkUrl = linkUrl
     return render(request, "gallery/gallery.html", {"pictures":pictures})
 
+@login_required
 def addPhoto(request):
 
     #creating the errors block
@@ -67,7 +77,7 @@ def addPhoto(request):
          #checking if artist exists and year is valid
 
          if artistExists(info["artista"]) and not photoExists(info["nombre"]) and info["año"] > 1700 and info["año"] < 2023 :
-          photo = Photo(name = info["nombre"], year = info["año"], file = info["archivo"], artist = info["artista"])
+          photo = Photo(name = info["nombre"], year = info["año"], file = info["archivo"], artist = info["artista"], description = info["descripcion"])
           photo.save()
           form = AddPhotoForm(None)
           return render(request, "addPhoto/addPhoto.html", {"form":form, "errors":errors})
@@ -89,7 +99,7 @@ def addPhoto(request):
     
     return render(request,"addPhoto/addPhoto.html", {"form":form, "errors":errors})
 
-
+@login_required
 def addArtist(request):
    
    #creating the error block
@@ -127,7 +137,7 @@ def addArtist(request):
 
    return render(request, "addArtist/addArtist.html", {"form":form, "errors":errors}) 
 
-
+@login_required
 def searchPicture(request) :
 
    search = request.GET["search"]
@@ -139,65 +149,137 @@ def searchPicture(request) :
    pictures.extend(byArtist)
 
    pictures = list(set(pictures))
+
+    #making a valid string to put the file path in the url (because it can´t include /)
+   for picture in pictures:
+      url = picture.file.url
+      linkUrl = url.replace("/","%line%")
+      picture.linkUrl = linkUrl
    return render(request, "gallery/gallery.html", {"pictures":pictures})
 
+@login_required
+def singlePhoto(request, photoURL) :
 
-def account(request):
-    return render(request, "account/account.html",{})
+   originalURL = unquote(photoURL)
 
-def register(request):
+   #getting the real photo URL replacing "%line%" with "/"
+   photoURL = unquote(photoURL.replace("%line%", "/"))
+   pictures = Photo.objects.all()
+   picture = None
 
-   #errors
+   for pic in pictures:
+      if(pic.file.url == photoURL) :
+         picture = pic
 
-   errors={
-      "isPost":True,
-      "userIsValid":True
-   }
+   
+   return render(request, "singlePhoto/singlePhoto.html", {"photoURL":originalURL,"picture":picture,"delete":False})
 
-   #creating a method to check if user exists
+@login_required
+def editPhoto(request, photoURL):
 
-   users = User.objects.all()
+   #getting the real photo URL replacing "%line%" with "/"
+   photoURL = unquote(photoURL.replace("%line%", "/"))
+   pictures = Photo.objects.all()
+   photo = None
 
-   def userExists(email) :
+   for pic in pictures:
+      if(pic.file.url == photoURL) :
+         photo = pic
+
+   #the errors object
+
+   errors = {
+       "validArtist":True,
+       "validYear":True,
+       "validPhoto":True
+    }
+
+   
+   #cheking the method
+
+   if request.method == "POST" :
+
+      #cheking all the possible artists and photos
+
+      artists = Artist.objects.all()
+      photos = Photo.objects.all()
+
+     #function to detect if artist exists
+
+      def artistExists(name) :
        response = False
-       for model in users:
-          if model.email == email :
+       for model in artists:
+          if model.name == name :
              response = True
 
        return response
+      
+      #function to detect if photo exists
+     
+      def photoExists(name, current) :
+       response = False
+       for model in photos:
+          if model.name == name :
+             response = True
 
-   #checking if method is POST
+       if name == current:
+        return False
+       else:
+         return response
 
-   if request.method == "POST":
 
-      #recieving the form
-
-      form = AddUserForm(request.POST, request.FILES)
-
-      #if the info is valid, recieves it
+      form = EditPhotoForm(request.POST, request.FILES)
 
       if form.is_valid():
-         
-         info = form.cleaned_data
+        
+        info = form.cleaned_data
+        
+        if artistExists(info["artista"]) and not photoExists(info["nombre"], photo.name) and info["año"] > 1700 and info["año"] < 2024:
+           
+           photo.name = info["nombre"]
+           photo.artist = info["artista"]
+           if(info["archivo"]):
+            photo.file = info["archivo"]
+           photo.year = info["año"]
+           photo.description = info["descripcion"]
+           photo.save()
 
-         if userExists(info["email"]) :
-
-            errors["userIsValid"] = False
-         
-         else: 
-         
-            user = User(name = info["nombre"], email = info["email"], profilePicture = info["foto"])
-            user.save()
-
-            form = AddUserForm(None)
-
-            return render(request, "register/register.html", {"form":form, "errors":errors})
-
-   else:
-      errors["isPost"] = False
-      form = AddUserForm()
+           return render(request, "editPhoto/editPhoto.html", {"form":form, "errors":errors})
+        
+        elif not artistExists(info["artista"]):
+         errors["validArtist"] = False
+         return render(request, "editPhoto/editPhoto.html", {"form":form, "errors":errors})
+        
+        elif photoExists(info["nombre"], photo.name):
+           errors["validPhoto"] = False
+           return render(request, "editPhoto/editPhoto.html", {"form":form, "errors":errors})
+        
+        elif info["año"] < 1700 or info["año"] > 2023:
+           errors["validYear"] = False
+           return render(request, "editPhoto/editPhoto.html", {"form":form, "errors":errors})
    
-   return render(request,"register/register.html",{"form":form, "errors":errors})
+   else:
+      form = EditPhotoForm(initial = {"nombre":photo.name, "año":photo.year, "archivo":photo.file, "artista":photo.artist, "descripcion":photo.description})
 
-def login(request):
-   return render(request, "login/login.html")
+   return render(request, "editPhoto/editPhoto.html", {"form":form, "errors":errors})
+
+@login_required
+def deletePhoto(request, photoURL):
+   originalURL = unquote(photoURL)
+
+   #getting the real photo URL replacing "%line%" with "/"
+   photoURL = unquote(photoURL.replace("%line%", "/"))
+   pictures = Photo.objects.all()
+   photo = None
+
+   for pic in pictures:
+      if(pic.file.url == photoURL) :
+         photo = pic
+
+
+   #checking the method
+
+   if request.method == "POST" and photo != None:
+      photo.delete()
+   
+   return render(request,"singlePhoto/singlePhoto.html", {"photoURL":originalURL,"picture":photo,"delete":True})

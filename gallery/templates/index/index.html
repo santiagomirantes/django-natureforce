@@ -1,1 +1,38 @@
 {% extends "parent/parent.html" %}
+
+{% load static %}
+
+{%block styles%}<link rel="stylesheet" href="{%static 'css/index.css'%}">{%endblock%}
+
+{%block content%}
+
+<section id="content">
+
+    <div id="container1" class="container odd">
+       <div class="text">
+        <h3>¿QUÉ ES NATUREFORCE?</h3>
+        <p>NatureForce es una comunidad de amantes de la naturaleza, que se dedican a recopilar
+            fotografías de la mejor calidad para expresar la belleza del planeta tierra.
+        </p>
+       </div>
+
+       <img src="{%static 'media/images/landscapes/waterfall.png'%}">
+       
+    </div>
+
+    <div id="container1" class="container even">
+
+        <img src="{%static 'media/images/landscapes/forest.png'%}">
+
+        <div class="text">
+         <h3>¿CÓMO ME UNO?</h3>
+         <p>Para iniciar tu recorrido en esta hermosa comunidad, tu primer paso es
+            crear una cuenta. Luego, podrás empezar a interactuar con el contenido.
+         </p>
+        </div>
+        
+     </div>
+
+</section>
+
+{%endblock%}

@@ -8,13 +8,16 @@ class AddPhotoForm(forms.Form):
     año = forms.IntegerField()
     archivo = forms.FileField()
     artista = forms.CharField(max_length = 100)
+    descripcion = forms.CharField(max_length = 1000, widget=forms.TextInput())
 
 class AddArtistForm(forms.Form):
     nombre = forms.CharField(max_length = 100)
     edad = forms.IntegerField()
     email = forms.EmailField()
 
-class AddUserForm(forms.Form):
-    foto = forms.FileField(required=False, label="Foto (opcional)")
+class EditPhotoForm(forms.Form):
     nombre = forms.CharField(max_length = 100)
-    email = forms.EmailField()    
+    año = forms.IntegerField()
+    archivo = forms.FileField(required=False)
+    artista = forms.CharField(max_length = 100)
+    descripcion = forms.CharField(max_length = 1000, widget=forms.TextInput())

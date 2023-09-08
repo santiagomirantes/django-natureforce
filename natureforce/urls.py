@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from gallery.views import *
 from gallery.views import index #index
+from accounts.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("gallery/", include("gallery.urls")),
+    path("accounts/",include("accounts.urls")),
     path("",index),
 ]
 

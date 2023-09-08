@@ -1,0 +1,43 @@
+{%extends 'noSliderParent/noSliderParent.html'%}
+
+{%load static%}
+
+{%block pageTitle%}Ver Foto{%endblock%}
+
+{%block styles%}<link rel="stylesheet" href="{%static 'css/singlePhoto.css'%}">{%endblock%}
+
+{%block beforeTitle%}<a href="{%url 'gallery'%}" id="back" title="Regresar"></a>{%endblock%}
+
+{%block title%}VER FOTO{%endblock%}
+
+{%block content%}
+
+<div id="container">
+    <img src="{{picture.file.url}}">
+    <div id="text">
+     <h2>{{picture.name}}</h2>
+     <h3 id="artist">{{picture.artist}}</h3>
+     <h3 id="year">{{picture.year}}</h3>
+     <p>{{picture.description}}</p>
+     <div id="buttons">
+       <input type="button" id="editPhoto" value="Editar" onclick="window.location.href = '/gallery/editPhoto/{{photoURL|urlencode}}'">
+       <form id="deleteForm" action="deletePhoto/{{photoURL|urlencode}}" method="GET">
+         <input type="submit" id="deletePhoto" value="Eliminar">
+       </form>
+     </div>
+    </div>
+</div>
+
+{%if delete%}
+
+<div id="deleteMessage">
+  <h2>¿Está seguro?</h2>
+  <input type="button" id="deny" value="No, regresar" onclick="window.location.href = '/gallery/singlePhoto/{{photoURL|urlencode}}'">
+  <form method="POST"> {%csrf_token%}
+
+  <input type="submit" id="accept" value="Si, eliminar">
+
+  </form>
+</div>
+{%endif%}
+{%endblock%}

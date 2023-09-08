@@ -1,0 +1,52 @@
+{%extends 'noSliderParent/noSliderParent.html'%}
+
+{%load static%}
+
+{%block styles%}
+<link rel="stylesheet" href="{% static 'css/editPhoto.css'%}">
+<link rel="stylesheet" href="{% static 'css/forms.css'%}">
+
+{%endblock%}
+
+{%block pageTitle%}Editar Foto{%endblock%}
+
+{%block beforeTitle%}<a href="{%url 'gallery'%}" id="back" title="Regresar"></a>{%endblock%}
+
+{%block title%}Editar Foto{%endblock%}
+
+{%block content%}
+
+{%if not errors.validArtist%}
+
+<div id="error">
+    <p>El artista no existe.</p>
+</div>
+
+{%endif%}
+
+{%if not errors.validPhoto%}
+
+<div id="error">
+    <p>Otra foto ya tiene este nombre.</p>
+</div>
+
+{%endif%}
+
+{%if not errors.validYear%}
+
+<div id="error">
+    <p>El año debe ser entre 1700 y 2023.</p>
+</div>
+
+{%endif%}
+
+<form method="POST" id="form"> {%csrf_token%}
+
+    <table>
+        {{form.as_table}}
+    </table>
+
+    <input type="submit" id="submit" value="Editar">
+
+</form>
+{%endblock%}

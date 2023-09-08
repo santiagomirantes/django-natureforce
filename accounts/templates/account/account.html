@@ -1,0 +1,49 @@
+{%extends 'noSliderParent/noSliderParent.html'%}
+
+{%load static%}
+
+{%block styles%}<link rel="stylesheet" href="{%static 'css/account.css'%}">{%endblock%}
+
+{%block pageTitle%}Cuenta{%endblock%}
+
+{%block title%}{%endblock%}
+{%block subtitle%}Configura tu perfil{%endblock%}
+
+{%block content%}
+
+{%if user.is_authenticated%}
+
+<div id="account">
+    <div id="left">
+
+        {%if avatar == None%}
+        <img src="{%static 'media/images/default_files/default_profile.png'%}">
+        {%else%}
+        <img src="{{avatar.image.url}}">
+        {%endif%}
+
+    </div>
+
+    <div id="right">
+
+    <h3 id="username">{{user.username}}</h3>
+    <h3 id="email">{{user.email}}</h3>
+
+    <button id="editProfile"><a href="{%url 'editProfile'%}">Editar perfil</a></button>
+    <button id="logout"><a href="{%url 'logout'%}">Cerrar sesión</a></button>
+    </div>
+</div>
+
+
+{%else%}
+
+<div id="chooseOption">
+    <img id="logo" src="{%static '/media/images/logo/logo.png'%}">
+    <button id="register"><a href="{%url 'register'%}?next={{ request.GET.next }}">Registrarse</a></button>
+    <h2>O</h2>
+    <button id="login"><a href="{%url 'login'%}?next={{ request.GET.next }}">Iniciar Sesión</a></button>
+</div>
+
+{%endif%}
+
+{%endblock%}

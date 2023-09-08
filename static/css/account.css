@@ -1,17 +1,29 @@
+body{
+    background-image: url(../media/images/landscapes/small_river_in_forest.png);
+    background-size:cover;
+}
+
+#logo{
+    width:20vw;
+    height:22vh;
+    object-fit: cover;
+    margin-top: 5vh;
+}
+
 #chooseOption{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 #chooseOption h2{
-    font-size: 7rem;
+    font-size: 3.5rem;
 }
 #register{
     margin-top: 10vh;
 }
 #register, #login{
     --color:var(--middlegreen);
-    font-size:7rem;
+    font-size:3.5rem;
     text-transform: uppercase;
     width:70vw;
     border:5px solid var(--middlegreen);
@@ -29,4 +41,75 @@
     text-decoration: none;
     color: var(--color);
     transition: color 0.5s;
+}
+
+#account{
+    position: absolute;
+    width:80vw;
+    height:80vh;
+    background-color: white;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    margin-top: 45vh;
+    display: flex;
+    justify-content: space-between;
+}
+#account #left, #account #right{
+    width: 40vw;
+}
+#account #left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#account #left img{
+    width:30vw;
+    height:30vw;
+    object-fit: contain;
+    border-radius: 50%;
+}
+#account #left img:hover{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.8);
+}
+#account #right h3{
+    font-size: 1.5rem;
+}
+#account #right #username{
+    font-size: 5rem;
+    margin-top: 1vh;
+}
+#account #right #email{
+    color: grey;
+    font-weight: lighter;
+    margin-bottom: 2vh;
+}
+#account #right button{
+    --col:var(--middlegreen);
+    --col2:white;
+    width:30vw;
+    height: 7.5vh;
+    font-size: 1.5rem;
+    border: 2px solid var(--col);
+    background: var(--col2);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 5vh;
+    transition: background 0.5s, border 0.5s;
+}
+#account #right button a{
+    color: var(--col);
+    text-decoration: none;
+    transition: color 0.5s;
+}
+#account #right button:hover{
+    --col:white;
+    --col2:var(--middlegreen);
+    border: 2px solid var(--col2);
+}
+#account #right #logout{
+    --col:var(--red);
+}
+#account #right #logout:hover{
+    --col:white;
+    --col2:var(--red);
 }

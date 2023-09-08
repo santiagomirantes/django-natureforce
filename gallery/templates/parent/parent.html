@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NatureForce - {%block pageTitle%}Inicio{%endblock%}</title>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/parent.css' %}">
 
     <!--fonts-->
 
@@ -19,7 +19,7 @@
 <body>
     <header>
         <nav>
-            <img src="{% static 'media/images/logo/letter_logo.png' %}" id="header-logo">
+            <img src="{% static 'media/images/logo/letter_logo.png' %}" id="header-logo" title="Nature Force Logo">
             <ul id="nav-list">
                 <li><a href="{% url 'index'%}">INICIO</a></li>
                 <li><a href="{% url 'gallery'%}">GALERÍA</a></li>

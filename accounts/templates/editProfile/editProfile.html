@@ -1,0 +1,32 @@
+{%extends 'noSliderParent/noSliderParent.html'%}
+
+{%load static%}
+
+{%block styles%}
+<link rel="stylesheet" href="{%static 'css/forms.css'%}">
+{%endblock%}
+
+{%block pageTitle%}Editar Perfil{%endblock%}
+
+{%block title%}Editar Perfil{%endblock%}
+
+{%block content%}
+
+{%if success%}
+
+<div id="success">
+    <p>Edición de perfil exitosa. <a href="{%url 'login'%}">Inicia sesión para finalizar.</a></p>
+</div>
+
+{%endif%}
+
+<form method="POST" enctype="multipart/form-data"> {%csrf_token%}
+
+    <table>
+    {{form.as_table}}
+    </table>
+
+    <input type="submit" value="Editar">
+
+</form>
+{%endblock%}

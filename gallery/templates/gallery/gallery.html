@@ -30,7 +30,8 @@ Explora la naturaleza
 
 <div id="pictures">
     {%for picture in pictures%}
-    <div class="pictureContainer">
+
+    <div class="pictureContainer" onclick="window.location.href = '/gallery/singlePhoto/{{picture.linkUrl|urlencode}}';">
         <h2 class="pictureTitle">{{picture.name}}</h2>
         <h3 class="pictureArtist">{{picture.artist}}</h3>
         <img src="{{ picture.file.url }}" class="picture" alt="foto: {{picture.name}}">

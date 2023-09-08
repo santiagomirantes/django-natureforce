@@ -13,3 +13,14 @@ h1{
     text-decoration: none;
     color:var(--orange);
 }
+#success{
+    width:99vw;
+    background-color: var(--successbg);
+    border:7.5px solid var(--successborder);
+    color: white;
+    height:10vh;
+}
+#success a{
+    text-decoration: none;
+    color:var(--orange);
+}
