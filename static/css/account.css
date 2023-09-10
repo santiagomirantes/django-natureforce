@@ -106,6 +106,13 @@ body{
     --col2:var(--middlegreen);
     border: 2px solid var(--col2);
 }
+#account #right #messages{
+    --col:var(--orange);
+}
+#account #right #messages:hover{
+    --col:white;
+    --col2:var(--orange);
+}
 #account #right #logout{
     --col:var(--red);
 }

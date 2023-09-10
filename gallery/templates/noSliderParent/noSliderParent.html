@@ -20,10 +20,12 @@
 <body>
     <header>
         <nav>
-            <img src="{% static 'media/images/logo/letter_logo.png' %}" id="header-logo" title="Nature Force Logo">
+            <img src="{% static 'media/images/logo/letter_logo.png' %}" id="header-logo" title="Nature Force Logo"
+            onclick="window.location.href = '/gallery/';">
             <ul id="nav-list">
                 <li><a href="{% url 'index'%}">INICIO</a></li>
                 <li><a href="{% url 'gallery'%}">GALERÍA</a></li>
+                <li><a href="{%url 'about'%}">ACERCA DE</a></li>
                 <li><a href="{% url 'account'%}">CUENTA</a></li>
             </ul>
         </nav>

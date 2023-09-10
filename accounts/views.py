@@ -42,7 +42,16 @@ def loginView(request):
                 
                 login(request,user)
 
-                return render(request, "account/account.html", {"errors":errors})
+                avatar = None
+                user = None
+                if request.user.is_authenticated :
+
+                 try:
+                    avatar = Avatar.objects.get(user=request.user.id)
+                 except Avatar.DoesNotExist:
+                    avatar = None
+
+                return render(request, "account/account.html", {"avatar":avatar,"errors":errors})
             
             else:
                 errors.validUser = False
@@ -72,6 +81,7 @@ def registerView(request):
 
             avatar = Avatar(user=user,image=form.cleaned_data["avatar"])
             avatar.save()
+
             return render(request, "account/account.html")
         
     else:
@@ -118,3 +128,7 @@ def editProfile(request):
         #initial={"username":user.username,"email":user.email, "avatar":avatar}
 
     return render(request, "editProfile/editProfile.html", {"form":form, "success":False})
+
+
+def messages(request):
+    return render(request,"messages/messages.html")

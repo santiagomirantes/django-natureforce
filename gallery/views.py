@@ -283,3 +283,6 @@ def deletePhoto(request, photoURL):
       photo.delete()
    
    return render(request,"singlePhoto/singlePhoto.html", {"photoURL":originalURL,"picture":photo,"delete":True})
+
+def about(request) :
+   return render(request,"about/about.html")

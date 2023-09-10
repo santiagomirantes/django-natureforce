@@ -1,0 +1,23 @@
+h2:not(#shape h2){
+    font-size:3rem;
+}
+p{
+    font-size:1.5rem;
+    margin-bottom: 5vh;
+}
+
+table tbody tr th, table tbody tr td{
+    border: 0.5px solid grey;
+    width:20vw;
+}
+table ul{
+    list-style: none;
+}
+a:not(nav a){
+    text-decoration: none;
+    color: var(--orange);
+}
+a:not(nav a):hover{
+    background-color: black;
+    color: white;
+}

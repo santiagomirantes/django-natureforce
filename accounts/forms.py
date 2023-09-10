@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from accounts.models import *
 
 class UserRegisterForm(UserCreationForm):
+    username = forms.CharField(label="Nombre de usuario")
     email = forms.EmailField()
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
@@ -15,6 +16,7 @@ class UserRegisterForm(UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 class UserEditForm(forms.ModelForm):
+    username = forms.CharField(label = "Nuevo nombre")
     avatar = forms.ImageField(label="Nuevo Avatar",required=False)
     email = forms.EmailField(label="Nuevo E-Mail")
     password1 = forms.CharField(label="Nueva contraseña",widget=forms.PasswordInput)

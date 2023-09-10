@@ -1,0 +1,58 @@
+{%extends 'parent/parent.html'%}
+
+{%load static%}
+
+{%block styles%}
+<link rel="stylesheet" href="{%static 'css/about.css'%}">
+{%endblock%}
+
+{%block pageTitle%}Acerca De{%endblock%}
+
+{%block title%}Acerca De{%endblock%}
+
+{%block subtitle%}CONOCENOS UN POCO MÁS{%endblock%}
+
+{%block content%}
+
+<h2>¿QUIENÉS SOMOS?</h2>
+
+<p>NatureForce es una comunidad que busca impulsar la conexión de las personas con la naturaleza.
+    Para lograr nuestro cometido, permitimos que miles de usuarios cada día puedan subir 
+    fotografías de la belleza genuina y primitiva presente en este planeta.
+</p>
+
+<h2>¿COMO PUEDO UNIRME?</h2>
+
+<p>
+    Para unirte a esta hermosa comunidad debes <a href="{%url 'register'%}">registrarte</a>,
+    lo que te permitirá ver y subir fotografías. Estas no deben ser necesariamente tuyas, ya
+    que en NatureForce permitimos subir obras de otros fotógrafos/artistas siempre que se le
+    den los creditos correctos y obligatorios.
+</p>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Versión</th>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <th>Empresa</th>
+            <td>NatureForce™</td>
+        </tr>
+        <tr>
+            <th>Correo electrónico</th>
+            <td><a href="mailto:natureforce@gmail.com">natureforce@gmail.com</a></td>
+        </tr>
+        <tr>
+            <th>Redes Sociales</th>
+            <td><ul>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Whatsapp</a></li>
+            </ul></td>
+        </tr>
+    </tbody>
+</table>
+
+{%endblock%}

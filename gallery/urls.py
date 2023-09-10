@@ -9,5 +9,6 @@ urlpatterns = [
     path("search/",views.searchPicture,name="search"),
     path("singlePhoto/<photoURL>", views.singlePhoto, name="singlePhoto"),
     path("editPhoto/<photoURL>", views.editPhoto, name="editPhoto"),
-    path("singlePhoto/deletePhoto/<photoURL>", views.deletePhoto, name="deletePhoto")
+    path("singlePhoto/deletePhoto/<photoURL>", views.deletePhoto, name="deletePhoto"),
+    path("about",views.about,name="about")
 ]

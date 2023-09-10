@@ -21,6 +21,7 @@
         {%else%}
         <img src="{{avatar.image.url}}">
         {%endif%}
+        
 
     </div>
 
@@ -29,6 +30,9 @@
     <h3 id="username">{{user.username}}</h3>
     <h3 id="email">{{user.email}}</h3>
 
+
+
+    <button id="messages"><a href="{%url 'messages'%}">Mensajes</a></button>
     <button id="editProfile"><a href="{%url 'editProfile'%}">Editar perfil</a></button>
     <button id="logout"><a href="{%url 'logout'%}">Cerrar sesión</a></button>
     </div>
