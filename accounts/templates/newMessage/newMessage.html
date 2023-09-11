@@ -1,0 +1,41 @@
+{%extends 'noSliderParent/noSliderParent.html'%}
+
+{%load static%}
+
+{%block styles%}
+<link rel="stylesheet" href="{%static 'css/forms.css'%}">
+{%endblock%}
+
+{%block pageTitle%}Nuevo Mensaje{%endblock%}
+
+{%block title%}Nuevo Mensaje{%endblock%}
+
+{%block content%}
+
+{%if not errors.userExists%}
+
+<div id="error">
+    <p>El destinatario no existe.</p>
+</div>
+
+{%endif%}
+
+{%if errors.success%}
+
+<div id="success">
+    <p>El mensaje fue enviado con exito</p>
+</div>
+
+{%endif%}
+
+<form method="POST"> {%csrf_token%}
+
+ <table>
+    {{form.as_table}}
+ </table>
+
+ <input type="submit" value="Enviar">
+
+</form>
+
+{%endblock%}

@@ -131,4 +131,56 @@ def editProfile(request):
 
 
 def messages(request):
-    return render(request,"messages/messages.html")
+
+    received = Message.objects.filter(receiver=request.user.username)
+    rlength = len(received)
+    sent = Message.objects.filter(transmitter=request.user.username)
+    slength = len(sent)
+
+    return render(request,"messages/messages.html", {"received":received,"sent":sent, "rlen":rlength, "slen":slength})
+
+def newMessage(request):
+   
+   errors = {
+      "success":False,
+      "userExists":True
+   }
+   
+   if request.method == "POST":
+      
+      #creating a method to check if user exists
+
+      def userExists(username):
+         try:
+           user = User.objects.get(username=username)
+           return True
+         except User.DoesNotExist:
+           return False
+      
+      form = newMessageForm(request.POST)
+
+      if form.is_valid():
+         
+         info = form.cleaned_data
+
+         if userExists(info["receiver"]):
+
+            newMessage = Message(receiver=info["receiver"],transmitter=request.user.username,title=info["title"], content=info["content"])
+
+            newMessage.save()
+
+            errors["success"] = True
+
+            form = newMessageForm()
+
+         else:
+
+            errors["userExists"] = False
+
+      return render(request, "newMessage/newMessage.html", {"form":form, "errors":errors})
+    
+   else:
+      
+      form = newMessageForm()
+
+   return render(request, "newMessage/newMessage.html", {"form":form, "errors":errors})

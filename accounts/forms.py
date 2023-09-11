@@ -27,6 +27,11 @@ class UserEditForm(forms.ModelForm):
         fields = ["username","email","password1","password2"]
         help_texts = {k:"" for k in fields}
 
+class newMessageForm(forms.Form):
+    title = forms.CharField(max_length = 100, label="Titulo")
+    content = forms.CharField(max_length=1000, label="Contenido", widget=forms.Textarea)
+    receiver = forms.CharField(max_length = 250,label="Destinatario")
+
 
 
 

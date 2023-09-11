@@ -11,7 +11,13 @@ class Photo(models.Model) :
     artist = models.CharField(max_length = 100)
     description = models.TextField(default="A short description of the picture.")
 
+    def __str__(self):
+        return f"{self.name} - {self.artist}"
+
 class Artist(models.Model) :
     name = models.CharField(max_length = 100)
     age = models.IntegerField()
     email = models.EmailField()
+
+    def __str__(self):
+        return f"{self.name} - {self.email}"

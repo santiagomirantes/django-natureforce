@@ -12,4 +12,57 @@
 
 {%block content%}
 
+<a href="{%url 'newMessage'%}">Nuevo mensaje</a>
+
+<div id="choose">
+<h3 id="choosen" onclick="change('received')">Recibidos</h3>
+<h3 onclick="change('sent')">Enviados</h3>
+</div>
+
+<div id="received">
+
+    {%if rlen == 0%}
+
+    <p>No hay mensajes recibidos.</p>
+
+    {%else%}
+
+    {%for message in received%}
+
+    <div class="message">
+        <h4>{{message.title}}</h4>
+        <h5>{{message.transmitter}}</h5>
+    </div>
+
+    {%endfor%}
+
+    {%endif%}
+
+
+
+</div>
+
+<div id="sent">
+
+    {%if slen == 0%}
+
+    <p>No hay mensajes enviados. <a href="{%url 'newMessage'%}">Envia uno aquí.</a></p>
+
+    {%else%}
+
+    {%for message in sent%}
+
+    <div class="message">
+        <h4>{{message.title}}</h4>
+        <h5>{{message.receiver}}</h5>
+    </div>
+    
+    {%endfor%}
+
+    {%endif%}
+
+</div>
+
+<script src="{%static 'scripts/changeSection.js'%}"></script>
+
 {%endblock%}

@@ -1,0 +1,68 @@
+h1{
+    margin-bottom:5vh;
+}
+a:not(nav a){
+    --bcol:var(--middlegreen);
+    --rot:0deg;
+    padding:2vh 5vw;
+    font-size:1.5rem;
+    background-color: var(--background);
+    border: 2px solid var(--orange);
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--orange);
+    transition: color 0.5s, background-color 0.5s;
+}
+a:not(nav a)::before{
+    content:"+";
+    margin-right: 0.5vw;
+    transform: rotate(var(--rot));
+    display: inline-block;
+    color: var(--bcol);
+    transition:transform 0.5s, col 0.5s;
+}
+a:not(nav a):hover{
+    --bcol:var(--green);
+    --rot:180deg;
+    color: var(--background);
+    background-color: var(--orange);
+}
+
+#choose{
+    display: flex;
+    justify-content: space-around;
+}
+
+#choose h3{
+    font-size: 3rem;
+    margin-top: 5vh;
+    cursor: pointer;
+}
+
+#choose #choosen{
+    color: var(--orange);
+    border-bottom:2px solid var(--middlegreen);
+}
+
+.message{
+   width:98vw;
+   border: 0.5px solid grey;
+}
+.message h4{
+    font-size: 3rem;
+    color: var(--middlegreen);
+}
+.message h5{
+    font-size: 2rem;
+}
+#received h5::before{
+    content:"de:";
+    color:var(--orange);
+    margin-right:0.5vw;
+}
+#sent h5::before{
+    content:"destinatario:";
+    color:var(--orange);
+    margin-right:0.5vw;
+}

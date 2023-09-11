@@ -16,3 +16,6 @@ class Message(models.Model):
     content = models.CharField(max_length=1000)
     transmitter = models.CharField(max_length = 250)
     receiver = models.CharField(max_length = 250)
+
+    def __str__(self):
+      return f"{self.transmitter} to {self.receiver}"
