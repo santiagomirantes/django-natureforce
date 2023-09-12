@@ -1,0 +1,21 @@
+h2{
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+#transmitter::before{
+    content:"emisor: ";
+    color:var(--orange);
+}
+#receiver::before{
+    content:"desinatario: ";
+    color:var(--orange);
+}
+#messageTitle{
+    color: var(--orange);
+}
+
+p{
+    font-size: 1.5rem;
+    margin-top: 0.5vh;
+    width: 100ch;
+}

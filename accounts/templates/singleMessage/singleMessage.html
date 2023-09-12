@@ -1,0 +1,33 @@
+{%extends 'noSliderParent/noSliderParent.html'%}
+
+{%load static%}
+
+{%block styles%}
+<link rel="stylesheet" href="{%static 'css/singleMessage.css'%}">
+{%endblock%}
+
+{%block pageTitle%}Mensaje{%endblock%}
+
+{%block beforeTitle%}
+<a id="back" href="{%url 'messages'%}"></a>
+{%endblock%}
+
+{%block title%}{{message.title}}{%endblock%}
+
+{%block content%}
+
+{%if isReceived%}
+<h2 id="transmitter">{{message.transmitter}}</h2>
+<h2 id="receiver">tí</h2>
+{%else%}
+<h2 id="transmitter">tí</h2>
+<h2 id="receiver">{{message.receiver}}</h2>
+{%endif%}
+
+<h2 id="messageTitle">Mensaje:</h2>
+
+<p id="message">{{message.content}}</p>
+
+
+
+{%endblock%}

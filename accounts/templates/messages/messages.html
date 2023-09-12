@@ -12,7 +12,7 @@
 
 {%block content%}
 
-<a href="{%url 'newMessage'%}">Nuevo mensaje</a>
+<a id="newMessage" href="{%url 'newMessage'%}">Nuevo mensaje</a>
 
 <div id="choose">
 <h3 id="choosen" onclick="change('received')">Recibidos</h3>
@@ -29,9 +29,10 @@
 
     {%for message in received%}
 
-    <div class="message">
+    <div class="message" onclick="window.location.href = '/accounts/singleMessage/{{message.pos}}'">
         <h4>{{message.title}}</h4>
         <h5>{{message.transmitter}}</h5>
+        
     </div>
 
     {%endfor%}
@@ -52,7 +53,7 @@
 
     {%for message in sent%}
 
-    <div class="message">
+    <div class="message" onclick="window.location.href = '/accounts/singleMessage/{{message.pos}}'">
         <h4>{{message.title}}</h4>
         <h5>{{message.receiver}}</h5>
     </div>

@@ -9,5 +9,6 @@ urlpatterns = [
     path("logout",LogoutView.as_view(template_name="logout/logout.html"), name = "logout"),
     path("editProfile",views.editProfile,name="editProfile"),
     path("messages",views.messages,name="messages"),
-    path("newMessage",views.newMessage,name="newMessage")
+    path("newMessage",views.newMessage,name="newMessage"),
+    path("singleMessage/<mesPos>",views.singleMessage,name="singleMessage")
 ]

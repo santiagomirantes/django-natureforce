@@ -130,6 +130,7 @@ def editProfile(request):
     return render(request, "editProfile/editProfile.html", {"form":form, "success":False})
 
 
+@login_required
 def messages(request):
 
     received = Message.objects.filter(receiver=request.user.username)
@@ -137,8 +138,16 @@ def messages(request):
     sent = Message.objects.filter(transmitter=request.user.username)
     slength = len(sent)
 
+
+    totalMessages = received[:]
+    totalMessages.extend(sent)
+
+    for i in totalMessages:
+       i.pos = totalMessages.index(i)
+
     return render(request,"messages/messages.html", {"received":received,"sent":sent, "rlen":rlength, "slen":slength})
 
+@login_required
 def newMessage(request):
    
    errors = {
@@ -184,3 +193,22 @@ def newMessage(request):
       form = newMessageForm()
 
    return render(request, "newMessage/newMessage.html", {"form":form, "errors":errors})
+
+
+@login_required
+def singleMessage(request, mesPos) :
+   
+   received = list(Message.objects.filter(receiver=request.user.username))
+   sent = list(Message.objects.filter(transmitter=request.user.username))
+
+   totalMessages = received[:]
+   totalMessages.extend(sent)
+
+   message = totalMessages[int(mesPos)]
+
+   isReceived = False
+
+   if int(mesPos) <= len(received) - 1:
+      isReceived = True
+   
+   return render(request, "singleMessage/singleMessage.html", {"message":message, "isReceived":isReceived})

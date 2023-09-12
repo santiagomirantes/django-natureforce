@@ -1,7 +1,15 @@
 h1{
     margin-bottom:5vh;
 }
-a:not(nav a){
+a{
+    text-decoration: none;
+    color: var(--orange);
+}
+a:hover{
+    background-color: black;
+    color: white;
+}
+#newMessage{
     --bcol:var(--middlegreen);
     --rot:0deg;
     padding:2vh 5vw;
@@ -14,7 +22,7 @@ a:not(nav a){
     color: var(--orange);
     transition: color 0.5s, background-color 0.5s;
 }
-a:not(nav a)::before{
+#newMessage::before{
     content:"+";
     margin-right: 0.5vw;
     transform: rotate(var(--rot));
@@ -22,7 +30,7 @@ a:not(nav a)::before{
     color: var(--bcol);
     transition:transform 0.5s, col 0.5s;
 }
-a:not(nav a):hover{
+#newMessage:hover{
     --bcol:var(--green);
     --rot:180deg;
     color: var(--background);
@@ -46,23 +54,39 @@ a:not(nav a):hover{
 }
 
 .message{
+   --bcol:var(--orange);
    width:98vw;
    border: 0.5px solid grey;
+   cursor: pointer;
+   transition: background-color 0.5s;
+}
+.message:hover{
+    --bcol:var(--color);
+    background-color: var(--orange);
 }
 .message h4{
     font-size: 3rem;
     color: var(--middlegreen);
+    padding-top: 5vh;
+    transition: color 0.5s;
+}
+.message:hover h4{
+    color: black;
 }
 .message h5{
     font-size: 2rem;
+    padding-bottom: 5vh;
 }
+
 #received h5::before{
     content:"de:";
-    color:var(--orange);
+    color:var(--bcol);
     margin-right:0.5vw;
+    transition: color 0.5s;
 }
 #sent h5::before{
     content:"destinatario:";
-    color:var(--orange);
+    color:var(--bcol);
     margin-right:0.5vw;
+    transition: color 0.5s;
 }
